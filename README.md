@@ -1,2 +1,1 @@
-# epidemics-data
-Epidemics data generated with epimod
+Epidemics data generated with [epimod](https://github.com/qBioTurin/epimod)
