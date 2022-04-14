@@ -1,0 +1,9 @@
+#PLACE  ID
+S	0
+E	1
+I	2
+R	3
+#TRANSITION  ID
+Infection	0
+Recovery	1
+Become_Infectious	2

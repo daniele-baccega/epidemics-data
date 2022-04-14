@@ -1,0 +1,7 @@
+m;S;255;
+m;E;0;
+m;I;0;
+m;R;0;
+c;Become_Infectious;runif;n=1;min=0.001;max=1
+c;Infection;runif;n=1;min=0.00001;max=0.01
+c;Recovery;runif;n=1;min=0.01;max=0.5
