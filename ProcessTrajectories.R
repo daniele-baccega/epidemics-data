@@ -1,13 +1,14 @@
-dir <- "SEIR_sensitivity/"
+in_dir <- "SEIR_sensitivity/"
+out_dir <- "dataset/"
 
-load(paste0(dir, "SEIR-sensitivity.RData"))
+load(paste0(in_dir, "SEIR-sensitivity.RData"))
 
-listFiles <- list.files(dir, pattern = ".trace")
+listFiles <- list.files(in_dir, pattern = ".trace")
 
 S0 <- 255
 
 lapply(listFiles, function(x){
-  data <- read.csv(paste0(dir, x), header=TRUE, sep="")
+  data <- read.csv(paste0(in_dir, x), header=TRUE, sep="")
   
   ID <- strtoi(gsub(".*[-]([^.]+)[.].*", "\\1", x))
   
@@ -18,5 +19,5 @@ lapply(listFiles, function(x){
     
   output <- append(data$I, R0)
   
-  write.table(output, paste0(dir, x), col.names=FALSE, row.names=FALSE)
+  write.table(output, paste0(out_dir, x), col.names=FALSE, row.names=FALSE)
 })
