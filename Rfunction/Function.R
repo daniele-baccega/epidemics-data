@@ -1,3 +1,11 @@
+init_generation <- function(min_init , max_init, n)
+{
+  S = runif(n=1, min=min_init, max=max_init)
+  # It returns a vector of lenght equal to 3 since the marking is 
+  # defined by the three places: S, I, and R.
+  return(c(S, 0, 0, 0))
+}
+
 fun.recovery <- function(optim_v, n)
 {
   return(optim_v[1])
