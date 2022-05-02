@@ -1,5 +1,5 @@
-in_dir <- "SEIR_sensitivity/"
-out_dir <- "dataset/"
+in_dir <- "data/"
+out_dir <- "dataset/data_inf_rate_0.00001-0.015/"
 
 load(paste0(in_dir, "SEIR-sensitivity.RData"))
 
