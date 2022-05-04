@@ -1,0 +1,4 @@
+i;init;init_generation;min_init=255;max_init=1000
+c;Become_Infectious;runif;n=1;min=0.5739644;max=0.5739644
+c;Infection;runif;n=1;min=0.00001;max=0.015
+c;Recovery;runif;n=1;min=0.1303407;max=0.1303407
