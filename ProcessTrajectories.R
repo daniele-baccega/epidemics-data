@@ -1,3 +1,5 @@
+library(dplyr)
+
 in_dir <- "SEIR_analysis/"
 out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
 
@@ -22,17 +24,7 @@ lapply(listFiles, function(x){
   rev_data_frame <- t(rev_data_frame)
   rev_data_frame <- as.data.frame(rev_data_frame)
   
-  last_time <- rev_data_frame$Time[1] + 1
-  
-  f <- function(row){
-    #print(row["Time"])
-    if(last_time != row["Time"]){
-      data_unique <- rbind(data_unique, row)
-      last_time <- row["Time"]
-    }
-  }
-  
-  apply(rev_data_frame, 1, f)
+  rev_data_frame <- distinct(rev_data_frame, Time, .keep_all= TRUE)
   
   R0 <- (infection_rate * S0) / recovery_rate
     
