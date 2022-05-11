@@ -1,4 +1,5 @@
 library(dplyr)
+library(testit)
 
 in_dir <- "SEIR_analysis/"
 out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
@@ -18,17 +19,24 @@ lapply(listFiles, function(x){
   infection_rate <- config[[3]][[ID]][[3]]
   recovery_rate <- config[[4]][[ID]][[3]]
   
-  transpose <- t(data)
-  transpose <- as.data.frame(transpose)
-  rev_data_frame <- rev(transpose)
-  rev_data_frame <- t(rev_data_frame)
-  rev_data_frame <- as.data.frame(rev_data_frame)
+  reverse_dataframe <- function(dataframe){
+    transpose <- t(dataframe)
+    transpose <- as.data.frame(transpose)
+    rev_data_frame <- rev(transpose)
+    rev_data_frame <- t(rev_data_frame)
+    rev_data_frame <- as.data.frame(rev_data_frame)  
+    
+    return(rev_data_frame)
+  }
   
-  rev_data_frame <- distinct(rev_data_frame, Time, .keep_all= TRUE)
+  data <- reverse_dataframe(data)
+  data <- distinct(data, Time, .keep_all= TRUE)
   
   R0 <- (infection_rate * S0) / recovery_rate
     
-  output <- append(rev(rev_data_frame$I), R0)
+  data <- reverse_dataframe(data)
+  
+  output <- append(data$I[0:62], R0)
   
   write.table(output, paste0(out_dir, x), col.names=FALSE, row.names=FALSE)
 })
