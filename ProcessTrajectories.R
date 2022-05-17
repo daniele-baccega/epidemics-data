@@ -43,7 +43,7 @@ lapply(listFiles, function(x){
   #plot(data$I[0:62])
   #lines(s)
   
-  output <- append(s, R0)
+  output <- append(s[0:61], R0)
   #print(output)
   
   write.table(output, paste0(out_dir, x), col.names=FALSE, row.names=FALSE)
