@@ -2,7 +2,7 @@ library(dplyr)
 library(testit)
 library(pracma)
 
-in_dir <- "SEIR_analysis//"
+in_dir <- "SEIR_analysis/"
 out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
 
 load(paste0(in_dir, "SEIR-analysis.RData"))
@@ -37,10 +37,16 @@ lapply(listFiles, function(x){
     
   data <- reverse_dataframe(data)
   
-  s <- predict(loess(data$I[0:62]~seq(0, 61, 1), span=0.2))
+  I <- data$I
+  x <- seq(0, 61, 1)
+  
+  
+  
+  
+  s <- predict(loess(I~x, span=0.25))
   s[s < 0] <- 0
   
-  #plot(data$I[0:62])
+  #plot(I)
   #lines(s)
   
   output <- append(s[0:61], R0)
