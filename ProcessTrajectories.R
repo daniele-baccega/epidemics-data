@@ -40,7 +40,7 @@ lapply(listFiles, function(x){
   I <- data$I[0:62]
   x_data <- seq(0, 61, 1)
   
-  s <- predict(loess(I~x_data, span=0.2), x)
+  s <- predict(loess(I~x_data, span=0.2))
   #s[s < 0] <- 0
   
   #plot(x_new, s, col='red', type='l')
