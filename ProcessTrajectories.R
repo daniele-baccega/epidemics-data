@@ -37,17 +37,13 @@ lapply(listFiles, function(x){
     
   data <- reverse_dataframe(data)
   
-  I <- data$I
-  x <- seq(0, 61, 1)
+  I <- data$I[0:62]
+  x_data <- seq(0, 61, 1)
   
+  s <- predict(loess(I~x_data, span=0.2), x)
+  #s[s < 0] <- 0
   
-  
-  
-  s <- predict(loess(I~x, span=0.25))
-  s[s < 0] <- 0
-  
-  #plot(I)
-  #lines(s)
+  #plot(x_new, s, col='red', type='l')
   
   output <- append(s[0:61], R0)
   #print(output)
