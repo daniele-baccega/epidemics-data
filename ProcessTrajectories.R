@@ -2,8 +2,8 @@ library(dplyr)
 library(testit)
 library(pracma)
 
-in_dir <- "test/" #"SEIR_analysis/"
-out_dir <- "out_test/" #"dataset/Stochastic/data_inf_rate_0.00001-0.015/"
+in_dir <- "SEIR_analysis/"
+out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
 
 load(paste0(in_dir, "SEIR-analysis.RData"))
 
@@ -37,19 +37,22 @@ lapply(listFiles, function(x){
     
   data <- reverse_dataframe(data)
   
-  I <- data$I[0:62]
-  x_data <- seq(0, 61, 1)
+  #I <- data$I[0:62]
+  #x_data <- seq(0, 61, 1)
   
-  s <- predict(loess(I~x_data, span=0.2))
+  
+  
+  
+  #s <- predict(loess(I~x_data, span=0.2))
   #s[s < 0] <- 0
   
-  png(file=paste0(x, ".png"), width=1000, height=550)
-  plot(x_data, s, col='red', type='l')
-  lines(x_data, I, col='black', type='b')
-  dev.off()
+  #png(file=paste0(x, ".png"), width=1000, height=550)
+  #plot(x_data, s, col='red', type='l')
+  #lines(x_data, I, col='black', type='b')
+  #dev.off()
   
   
-  output <- append(s[0:61], R0)
+  output <- append(data$I[0:62]/S0, R0)
   #print(output)
   
   write.table(output, paste0(out_dir, x), col.names=FALSE, row.names=FALSE)
