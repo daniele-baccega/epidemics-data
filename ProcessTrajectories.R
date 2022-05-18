@@ -2,8 +2,8 @@ library(dplyr)
 library(testit)
 library(pracma)
 
-in_dir <- "SEIR_analysis/"
-out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
+in_dir <- "test/" #"SEIR_analysis/"
+out_dir <- "out_test/" #"dataset/Stochastic/data_inf_rate_0.00001-0.015/"
 
 load(paste0(in_dir, "SEIR-analysis.RData"))
 
@@ -43,7 +43,11 @@ lapply(listFiles, function(x){
   s <- predict(loess(I~x_data, span=0.2))
   #s[s < 0] <- 0
   
-  #plot(x_new, s, col='red', type='l')
+  png(file=paste0(x, ".png"), width=1000, height=550)
+  plot(x_data, s, col='red', type='l')
+  lines(x_data, I, col='black', type='b')
+  dev.off()
+  
   
   output <- append(s[0:61], R0)
   #print(output)
