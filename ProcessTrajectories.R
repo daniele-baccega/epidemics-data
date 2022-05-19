@@ -3,7 +3,8 @@ library(testit)
 library(pracma)
 
 in_dir <- "SEIR_analysis/"
-out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
+out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.002/"
+out_dir_norm <- "dataset/Stochastic/data_inf_rate_0.00001-0.002_norm/"
 
 load(paste0(in_dir, "SEIR-analysis.RData"))
 
@@ -37,11 +38,9 @@ lapply(listFiles, function(x){
     
   data <- reverse_dataframe(data)
   
+  
   #I <- data$I[0:62]
   #x_data <- seq(0, 61, 1)
-  
-  
-  
   
   #s <- predict(loess(I~x_data, span=0.2))
   #s[s < 0] <- 0
@@ -52,8 +51,10 @@ lapply(listFiles, function(x){
   #dev.off()
   
   
-  output <- append(data$I[0:62]/S0, R0)
+  output <- append(data$I[0:61], R0)
+  output_norm <- append(data$I[0:61]/S0, R0)
   #print(output)
   
   write.table(output, paste0(out_dir, x), col.names=FALSE, row.names=FALSE)
+  write.table(output_norm, paste0(out_dir_norm, x), col.names=FALSE, row.names=FALSE)
 })
