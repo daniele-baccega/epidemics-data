@@ -3,8 +3,8 @@ library(testit)
 library(pracma)
 
 in_dir <- "SEIR_analysis/"
-out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.002/"
-out_dir_norm <- "dataset/Stochastic/data_inf_rate_0.00001-0.002_norm/"
+out_dir <- "dataset/Stochastic/data_inf_rate_0.00001-0.015/"
+out_dir_norm <- "dataset/Stochastic/data_inf_rate_0.00001-0.015_norm/"
 
 load(paste0(in_dir, "SEIR-analysis.RData"))
 
